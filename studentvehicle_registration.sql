@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `student` (
   `matricNo` varchar(10) NOT NULL,
-  `icNo` int(12) NOT NULL,
+  `icNo` varchar(14) NOT NULL,
   `name` varchar(100) NOT NULL,
   `phoneNo` varchar(11) NOT NULL,
   `yearStudy` int(1) NOT NULL,
