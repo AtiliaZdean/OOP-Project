@@ -269,4 +269,3 @@ public class StudentVehicle extends JFrame {
 	}
 }
 
-
