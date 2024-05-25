@@ -47,7 +47,8 @@ CREATE TABLE `vehicle` (
   `matricNo` varchar(10) NOT NULL,
   `plateNo` varchar(12) NOT NULL,
   `model` varchar(50) NOT NULL,
-  `color` varchar(30) NOT NULL
+  `color` varchar(30) NOT NULL,
+  `vehicle_type` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
