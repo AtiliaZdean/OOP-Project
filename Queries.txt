@@ -1,0 +1,32 @@
+
+//Connection to database
+
+private final String URL = "jdbc:mysql://localhost:3306/studentvehicle_registration";
+private final String USER = "root";
+private final String PASSWORD = "";
+
+//add Student
+private void addStudent (String matricNo, int icNo, String name, String phoneNo, int yearStudy, String address, String faculty){
+	try (Connection conn = DriverManager.getConnection( URL, USER, PASSWORD))
+	{
+		String query = "INSERT INTO student (matricNo, icNo, name, phoneNo, yearStudy, address, faculty) VALUES (?,?,?,?,?,?,?)";
+		try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+			pstmt.setString(1, matricNo);
+			pstmt.setString(2, icNo);
+			pstmt.setString(3, name);
+			pstmt.setString(4, phoneNo);
+			pstmt.setString(5, yearStudy);
+			pstmt.setString(6, address);
+			pstmt.setString(7, faculty);
+			pstmt.executeUpdate();
+		}
+	} catch (SQLException ex) {
+		ex.printStackTrace();
+	}
+}
+
+//Update Record
+
+private void updateRecord(String matricNo, int icNo, String name, String phoneNo, int yearStudy, String address, String faculty) {
+	try (Connection conn = DriverManager.getConnection( URL, USER, PASSWORD))
+}
