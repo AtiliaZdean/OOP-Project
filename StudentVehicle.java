@@ -39,9 +39,9 @@ public class StudentVehicle extends JFrame {
 	private JTextField textField_7;
 	//private JTextField textField_8;
 	private JTextField textField_9;
-	Student student;
-	Vehicle vehicle;
-	DatabaseQuery registration;
+	private Student student;
+	private Vehicle vehicle;
+	private DatabaseQuery registration;
 
 	/**
 	 * Launch the application.
@@ -211,7 +211,8 @@ public class StudentVehicle extends JFrame {
 		rdbtnMotorcycle.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnMotorcycle.setBounds(0, 42, 111, 23);
 		panel_1.add(rdbtnMotorcycle);
-		
+
+		//to group the radio buttons so that user can only select one
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(rdbtnNewRadioButton);
 		bg.add(rdbtnMotorcycle);
