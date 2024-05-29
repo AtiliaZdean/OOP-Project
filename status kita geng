@@ -3,7 +3,8 @@ class Vehicle and its subclasses, interface - Vehicle.java
 class for database query - DatabaseQuery.java
 
 
-//btw aku ada try part registration guna GUI auni haritu untuk test insert and select (check) query. dan successful. boleh tengok kat StudentVehicle.java.
+//btw aku ada try part registration guna GUI auni haritu untuk test insert and select (check) query. dan successful. boleh tengok kat StudentVehicle.java. 
+  tapi ni simply untuk aku testing database je, so x nak pakai aku punya pun ok
 //pastu cadangan aku yang pasal HashSet tu, kalau korang setuju, aku try buat n nanti aku pass kat auni. (kalau setuju la). hashset ni nanti terletak kat 'delete and update' page.
 
-sincerely, atilia cantik
+sincerely, atilia cantik <3
