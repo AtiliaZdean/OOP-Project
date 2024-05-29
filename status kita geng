@@ -1,0 +1,6 @@
+class Student - Student.java
+class Vehicle and its subclasses, interface - Vehicle.java
+class for database query - DatabaseQuery.java
+
+
+//btw aku ada try part registration guna GUI auni haritu untuk test insert and select (check) query. dan successful. boleh tengok kat StudentVehicle.java.
