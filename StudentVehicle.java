@@ -8,6 +8,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -18,7 +21,9 @@ import javax.swing.JSeparator;
 import javax.swing.JRadioButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class StudentVehicle extends JFrame {
 
@@ -32,8 +37,11 @@ public class StudentVehicle extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
-	private JTextField textField_8;
+	//private JTextField textField_8;
 	private JTextField textField_9;
+	Student student;
+	Vehicle vehicle;
+	DatabaseQuery registration;
 
 	/**
 	 * Launch the application.
@@ -76,7 +84,6 @@ public class StudentVehicle extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("Name:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
 		lblNewLabel_2.setBounds(20, 72, 34, 14);
 		contentPane.add(lblNewLabel_2);
@@ -94,7 +101,6 @@ public class StudentVehicle extends JFrame {
 		
 		textField_1 = new JTextField();
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-
 		textField_1.setColumns(10);
 		textField_1.setBounds(92, 25, 137, 20);
 		panel.add(textField_1);
@@ -109,7 +115,6 @@ public class StudentVehicle extends JFrame {
 		lblNewLabel_2_1_1.setForeground(Color.BLACK);
 		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_2_1_1.setBounds(248, 27, 88, 14);
-
 		panel.add(lblNewLabel_2_1_1);
 		
 		textField_2 = new JTextField();
@@ -137,7 +142,6 @@ public class StudentVehicle extends JFrame {
 		panel.add(lblNewLabel_2_1_1_2);
 		
 		JSpinner spinner = new JSpinner();
-
 		spinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		spinner.setBounds(340, 73, 41, 20);
 		panel.add(spinner);
@@ -151,12 +155,11 @@ public class StudentVehicle extends JFrame {
 		
 		textField_7 = new JTextField();
 		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
-
 		textField_7.setColumns(10);
 		textField_7.setBounds(92, 98, 137, 20);
 		panel.add(textField_7);
 		
-		JLabel lblNewLabel_2_1_1_1_2 = new JLabel("License Validity:");
+		/*JLabel lblNewLabel_2_1_1_1_2 = new JLabel("License Validity:");
 		lblNewLabel_2_1_1_1_2.setForeground(Color.BLACK);
 		lblNewLabel_2_1_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_2_1_1_1_2.setBounds(0, 52, 88, 14);
@@ -166,7 +169,7 @@ public class StudentVehicle extends JFrame {
 		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_8.setColumns(10);
 		textField_8.setBounds(92, 49, 137, 20);
-		panel.add(textField_8);
+		panel.add(textField_8);*/
 
 		JLabel lblNewLabel_2_1_1_1_1_1 = new JLabel("Address:");
 		lblNewLabel_2_1_1_1_1_1.setForeground(Color.BLACK);
@@ -209,9 +212,12 @@ public class StudentVehicle extends JFrame {
 		rdbtnMotorcycle.setBounds(0, 42, 111, 23);
 		panel_1.add(rdbtnMotorcycle);
 		
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(rdbtnNewRadioButton);
+		bg.add(rdbtnMotorcycle);
+		
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(228, 1, 1, 98);
-
 		panel_1.add(separator_2);
 		
 		JPanel panel_1_1 = new JPanel();
@@ -228,7 +234,6 @@ public class StudentVehicle extends JFrame {
 		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textField_4.setBounds(100, 1, 129, 20);
 		panel_1_1.add(textField_4);
-
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
@@ -244,7 +249,6 @@ public class StudentVehicle extends JFrame {
 		
 		textField_6 = new JTextField();
 		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-
 		textField_6.setColumns(10);
 		textField_6.setBounds(100, 57, 129, 20);
 		panel_1_1.add(textField_6);
@@ -260,11 +264,51 @@ public class StudentVehicle extends JFrame {
 		contentPane.add(separator_1);
 		
 		JButton btnNewButton = new JButton("Register");
-
 		btnNewButton.setBackground(new Color(255, 255, 255));
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(154, 432, 204, 34);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				registration = new DatabaseQuery();
+				
+				String name = textField.getText();
+				String icNo = textField_1.getText();
+				String phoneNo = textField_2.getText();
+				String matricNo = textField_3.getText();
+				int yearStudy = (Integer) spinner.getValue();
+				String faculty = textField_7.getText();
+				String address = textField_9.getText();
+				String vehicleType = null;
+				if (rdbtnNewRadioButton.isSelected()) {
+					vehicleType = "Car";
+				} else if (rdbtnMotorcycle.isSelected()) {
+					vehicleType = "Motorcycle";
+				}
+				String model = textField_4.getText();
+				String plateNo = textField_5.getText();
+				String color = textField_6.getText();
+				
+				if (!registration.existStudent(matricNo)) {
+					//invoke information into class
+					if (address == null || address.trim().isEmpty() ) {
+						student = new Student(icNo, name, matricNo, phoneNo, yearStudy, faculty);
+					} else {
+						student = new Student(icNo, name, matricNo, phoneNo, yearStudy, address, faculty);
+					}
+				
+					vehicle = new Vehicle(plateNo, model, color, vehicleType);
+				
+					//invoke into information into database
+					registration.addStudent(student);
+					registration.addVehicle(student, vehicle);
+					JOptionPane.showMessageDialog(null, "Student registered successfully!"); 
+					//use vehicle or car&motorcycle?
+				} else {
+					JOptionPane.showMessageDialog(null, "Student already registered"); 
+				}
+			}
+		});
 		contentPane.add(btnNewButton);
 	}
 }
