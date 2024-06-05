@@ -137,6 +137,9 @@ public class StudentVehicle extends JFrame {
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				student = new Student();
+				vehicle = new Vehicle();
+				registration = new DatabaseQuery();
 				String input = insertField.getText();
 				try {
 					if (input.isEmpty()) {
@@ -145,7 +148,19 @@ public class StudentVehicle extends JFrame {
 					//Check input(matric no) if in database, if exist go to tab pane(3) display registered details
 					else if (registration.existStudent(input)) {
 
-
+						student.matricNo = input;
+						registration.retrieveStudent(student);
+						registration.retrieveVehicle(student, vehicle);
+						
+						nameField_1.setText(student.getName());
+						spinner_1.setValue(student.getYearStudy());
+						
+						if ("Car".equals(vehicle.getVehicleType())) {
+							CarRadioButton_1.setSelected(true);
+						} else if ("Motorcycle".equals(vehicle.getVehicleType())) {
+							MotorRadioButton_1.setSelected(true);
+						}
+						
 						tabbedPane.setSelectedIndex(3);
 						
 					}
@@ -575,6 +590,11 @@ public class StudentVehicle extends JFrame {
 		//Will delete user information from database
 		//Have confirmation message
 		JButton deleteButton = new JButton("Delete");
+		deleteButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		deleteButton.setForeground(new Color(204, 0, 0));
 		deleteButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		deleteButton.setBackground(Color.WHITE);
