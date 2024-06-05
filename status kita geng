@@ -8,3 +8,19 @@ class for database query - DatabaseQuery.java
 //pastu cadangan aku yang pasal HashSet tu, kalau korang setuju, aku try buat n nanti aku pass kat auni. (kalau setuju la). hashset ni nanti terletak kat 'delete and update' page.
 
 sincerely, atilia cantik <3
+-------------------------------------------------------------------------------------------------
+
+Kita ada 4 tabs dalam panned tab
+setSelectedIndex(0) -> Main Page
+setSelectedIndex(1) -> Register Page
+setSelectedIndex(2) -> List Page
+setSelectedIndex(3) -> Details
+
+So far  progress:
+- Main page  90%
+- Register Page 100%
+- List Page 0%
+- Details 50%
+
+Sekian sahaja, AuniN
+-------------------------------------------------------------------------------------------------
