@@ -44,6 +44,15 @@ public class StudentVehicle extends JFrame {
 	private Vehicle vehicle;
 	private DatabaseQuery registration;
 	private JTextField insertField;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
 
 	/**
 	 * Launch the application.
@@ -120,6 +129,13 @@ public class StudentVehicle extends JFrame {
 					if (input.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Please input student matric number.","Error", JOptionPane.ERROR_MESSAGE);
 					} 
+					//Check input(matric no) if in database, if exist go to tab pane(3) display registered details
+					else if (registration.existStudent(input)) {
+
+
+						tabbedPane.setSelectedIndex(3);
+						
+					}
 					else {
 						int response = JOptionPane.showConfirmDialog(null, "Student " + input + " not registered. Do you want to register?", "Register?", JOptionPane.YES_NO_OPTION);
 						if (response == JOptionPane.YES_OPTION) {
@@ -348,6 +364,202 @@ public class StudentVehicle extends JFrame {
 		JPanel ListPage = new JPanel();
 		tabbedPane.addTab("List", null, ListPage, null);
 		ListPage.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Details", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		JPanel RegistrationPage_1 = new JPanel();
+		RegistrationPage_1.setLayout(null);
+		RegistrationPage_1.setBounds(0, 0, 469, 438);
+		panel_1.add(RegistrationPage_1);
+		
+		JLabel registerLabel_1 = new JLabel("UTeM Student Vehicle Registration System");
+		registerLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 18));
+		registerLabel_1.setBounds(48, 11, 337, 21);
+		RegistrationPage_1.add(registerLabel_1);
+		
+		JLabel studentLabel_1 = new JLabel("Student Credentials");
+		studentLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		studentLabel_1.setBounds(10, 43, 135, 14);
+		RegistrationPage_1.add(studentLabel_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBounds(10, 68, 449, 156);
+		RegistrationPage_1.add(panel_2);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField.setColumns(10);
+		textField.setBounds(92, 0, 357, 20);
+		panel_2.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_1.setColumns(10);
+		textField_1.setBounds(92, 25, 137, 20);
+		panel_2.add(textField_1);
+		
+		JLabel icLabel_1 = new JLabel("IC Number:");
+		icLabel_1.setForeground(Color.BLACK);
+		icLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		icLabel_1.setBounds(0, 27, 67, 14);
+		panel_2.add(icLabel_1);
+		
+		JLabel phoneLabel_1 = new JLabel("Phone Number:");
+		phoneLabel_1.setForeground(Color.BLACK);
+		phoneLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		phoneLabel_1.setBounds(248, 27, 88, 14);
+		panel_2.add(phoneLabel_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_2.setColumns(10);
+		textField_2.setBounds(340, 24, 109, 20);
+		panel_2.add(textField_2);
+		
+		JLabel matricLabel_1 = new JLabel("Matric Number:");
+		matricLabel_1.setForeground(Color.BLACK);
+		matricLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		matricLabel_1.setBounds(0, 76, 88, 14);
+		panel_2.add(matricLabel_1);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_3.setColumns(10);
+		textField_3.setBounds(92, 73, 137, 20);
+		panel_2.add(textField_3);
+		
+		JLabel yearLabel_1 = new JLabel("Year of Study:");
+		yearLabel_1.setForeground(Color.BLACK);
+		yearLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		yearLabel_1.setBounds(248, 75, 88, 14);
+		panel_2.add(yearLabel_1);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		spinner_1.setBounds(340, 73, 41, 20);
+		panel_2.add(spinner_1);
+		
+		JLabel facultyLabel_1 = new JLabel("Faculty:");
+		facultyLabel_1.setForeground(Color.BLACK);
+		facultyLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		facultyLabel_1.setBounds(0, 101, 88, 14);
+		panel_2.add(facultyLabel_1);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_4.setColumns(10);
+		textField_4.setBounds(92, 98, 137, 20);
+		panel_2.add(textField_4);
+		
+		JLabel addressLabel_1 = new JLabel("Address:");
+		addressLabel_1.setForeground(Color.BLACK);
+		addressLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		addressLabel_1.setBounds(0, 128, 88, 14);
+		panel_2.add(addressLabel_1);
+		
+		textField_5 = new JTextField();
+		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_5.setColumns(10);
+		textField_5.setBounds(92, 125, 357, 20);
+		panel_2.add(textField_5);
+		
+		JLabel nameLabel_1 = new JLabel("Name:");
+		nameLabel_1.setForeground(Color.BLACK);
+		nameLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		nameLabel_1.setBounds(0, 3, 34, 14);
+		panel_2.add(nameLabel_1);
+		
+		JLabel vehicleLabel_1 = new JLabel("Vehicle Details");
+		vehicleLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		vehicleLabel_1.setBounds(10, 235, 135, 14);
+		RegistrationPage_1.add(vehicleLabel_1);
+		
+		JPanel vtypePanel_1 = new JPanel();
+		vtypePanel_1.setLayout(null);
+		vtypePanel_1.setBounds(10, 260, 213, 88);
+		RegistrationPage_1.add(vtypePanel_1);
+		
+		JLabel vtypeLabel_1 = new JLabel("Vehicle Type:");
+		vtypeLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		vtypeLabel_1.setBounds(0, 1, 85, 14);
+		vtypePanel_1.add(vtypeLabel_1);
+		
+		JRadioButton CarRadioButton_1 = new JRadioButton("Car");
+		CarRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		CarRadioButton_1.setBounds(0, 18, 111, 23);
+		vtypePanel_1.add(CarRadioButton_1);
+		
+		JRadioButton MotorRadioButton_1 = new JRadioButton("Motorcycle");
+		MotorRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		MotorRadioButton_1.setBounds(0, 42, 111, 23);
+		vtypePanel_1.add(MotorRadioButton_1);
+		
+		JPanel vPanel_1 = new JPanel();
+		vPanel_1.setLayout(null);
+		vPanel_1.setBounds(231, 260, 228, 88);
+		RegistrationPage_1.add(vPanel_1);
+		
+		JLabel modelLabel_1 = new JLabel("Model Name:");
+		modelLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		modelLabel_1.setBounds(0, 4, 85, 14);
+		vPanel_1.add(modelLabel_1);
+		
+		textField_6 = new JTextField();
+		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_6.setColumns(10);
+		textField_6.setBounds(100, 1, 129, 20);
+		vPanel_1.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_7.setColumns(10);
+		textField_7.setBounds(100, 29, 129, 20);
+		vPanel_1.add(textField_7);
+		
+		JLabel plateLabel_1 = new JLabel("Plate Number:");
+		plateLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		plateLabel_1.setBounds(0, 32, 85, 14);
+		vPanel_1.add(plateLabel_1);
+		
+		textField_8 = new JTextField();
+		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_8.setColumns(10);
+		textField_8.setBounds(100, 57, 129, 20);
+		vPanel_1.add(textField_8);
+		
+		JLabel colorLabel_1 = new JLabel("Color:");
+		colorLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		colorLabel_1.setBounds(0, 60, 85, 14);
+		vPanel_1.add(colorLabel_1);
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(0); //Go back to main page
+			}
+		});
+		backButton.setForeground(Color.BLACK);
+		backButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		backButton.setBackground(Color.WHITE);
+		backButton.setBounds(20, 348, 204, 34);
+		RegistrationPage_1.add(backButton);
+		
+		JButton deleteButton = new JButton("Delete");
+		deleteButton.setForeground(new Color(204, 0, 0));
+		deleteButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		deleteButton.setBackground(Color.WHITE);
+		deleteButton.setBounds(241, 348, 204, 34);
+		RegistrationPage_1.add(deleteButton);
+		
+		JButton saveButton = new JButton("Save");
+		saveButton.setForeground(new Color(51, 204, 0));
+		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		saveButton.setBackground(Color.WHITE);
+		saveButton.setBounds(132, 393, 204, 34);
+		RegistrationPage_1.add(saveButton);
 		
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
