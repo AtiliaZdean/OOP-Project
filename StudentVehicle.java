@@ -30,6 +30,9 @@ public class StudentVehicle extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
+	//Register page fields line 36-49
+	//setSelectedIndex(1)
 	private JTextField nameField;
 	private JTextField icField;
 	private JTextField phoneField;
@@ -44,15 +47,18 @@ public class StudentVehicle extends JFrame {
 	private Vehicle vehicle;
 	private DatabaseQuery registration;
 	private JTextField insertField;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	
+	//Display page fields line 53-61
+	//setSelectedIndex(3)
+	private JTextField nameField_1;
+	private JTextField icField_1;
+	private JTextField phoneField_1;
+	private JTextField matricField_1;
+	private JTextField facultyField_1;
+	private JTextField addressField_1;
+	private JTextField modelField_1;
+	private JTextField plateField_1;
+	private JTextField colorField_1;
 
 	/**
 	 * Launch the application.
@@ -98,29 +104,36 @@ public class StudentVehicle extends JFrame {
 		ButtonGroup bg = new ButtonGroup();
 		contentPane.setLayout(null);
 		
+		//Tab pane declaration
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(10, 11, 474, 466);
 		contentPane.add(tabbedPane);
 		
+		//Main page tab
 		JPanel MainPage = new JPanel();
 		tabbedPane.addTab("Main", null, MainPage, null);
 		MainPage.setLayout(null);
 		
+		//Title1 Main
 		JLabel tLabel = new JLabel("WELCOME TO");
 		tLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		tLabel.setBounds(163, 102, 141, 14);
 		MainPage.add(tLabel);
 		
+		//Title2 Main
 		JLabel tLabel_1 = new JLabel("UTeM Student Vehicle Registration System");
 		tLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		tLabel_1.setBounds(50, 133, 367, 14);
 		MainPage.add(tLabel_1);
 		
+		//User input matric number to search/register
 		insertField = new JTextField();
 		insertField.setBounds(116, 185, 235, 20);
 		MainPage.add(insertField);
 		insertField.setColumns(10);
 		
+		//search based on input, if not register will prompt choice
+		//if user registered, bring to Detials tab setSelectedIndex(3)
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,8 +152,8 @@ public class StudentVehicle extends JFrame {
 					else {
 						int response = JOptionPane.showConfirmDialog(null, "Student " + input + " not registered. Do you want to register?", "Register?", JOptionPane.YES_NO_OPTION);
 						if (response == JOptionPane.YES_OPTION) {
-							tabbedPane.setSelectedIndex(1);
-							matricField.setText(input);
+							tabbedPane.setSelectedIndex(1); //bring to register page
+							matricField.setText(input); //set the matricNo to the input
 							}
 						}
 				}catch (Exception ex) {
@@ -151,6 +164,8 @@ public class StudentVehicle extends JFrame {
 		searchButton.setBounds(126, 216, 89, 23);
 		MainPage.add(searchButton);
 		
+		//List button bring to list page. Will list out registered users
+		//Will list: matricNo, VehicleType, model and plateNo
 		JButton listButton = new JButton("List");
 		listButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -160,11 +175,13 @@ public class StudentVehicle extends JFrame {
 		});
 		listButton.setBounds(252, 216, 89, 23);
 		MainPage.add(listButton);
-												
+		
+		//Register Page tab
 		JPanel RegistrationPage = new JPanel();
 		tabbedPane.addTab("Register", null, RegistrationPage, null);
 		RegistrationPage.setLayout(null);
-												
+		
+		//Register Page fields & labels line 185-347										
 		JLabel registerLabel = new JLabel("UTeM Student Vehicle Registration System");
 		registerLabel.setBounds(48, 11, 337, 21);
 		RegistrationPage.add(registerLabel);
@@ -336,6 +353,8 @@ public class StudentVehicle extends JFrame {
 		registerButton.setForeground(new Color(0, 0, 0));
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
+		//Cancel button will reset all input and return to main page
+		//Go back setSelectedIndex(0)
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -360,15 +379,18 @@ public class StudentVehicle extends JFrame {
 		cancelButton.setBackground(Color.WHITE);
 		cancelButton.setBounds(243, 380, 204, 34);
 		RegistrationPage.add(cancelButton);
-																						
+					
+		//List Page Tab
 		JPanel ListPage = new JPanel();
 		tabbedPane.addTab("List", null, ListPage, null);
 		ListPage.setLayout(null);
 		
+		//Details Page Tab
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Details", null, panel_1, null);
 		panel_1.setLayout(null);
 		
+		//Details Page fields & labels line 394-559
 		JPanel RegistrationPage_1 = new JPanel();
 		RegistrationPage_1.setLayout(null);
 		RegistrationPage_1.setBounds(0, 0, 469, 438);
@@ -389,17 +411,17 @@ public class StudentVehicle extends JFrame {
 		panel_2.setBounds(10, 68, 449, 156);
 		RegistrationPage_1.add(panel_2);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField.setColumns(10);
-		textField.setBounds(92, 0, 357, 20);
-		panel_2.add(textField);
+		nameField_1 = new JTextField();
+		nameField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		nameField_1.setColumns(10);
+		nameField_1.setBounds(92, 0, 357, 20);
+		panel_2.add(nameField_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(92, 25, 137, 20);
-		panel_2.add(textField_1);
+		icField_1 = new JTextField();
+		icField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		icField_1.setColumns(10);
+		icField_1.setBounds(92, 25, 137, 20);
+		panel_2.add(icField_1);
 		
 		JLabel icLabel_1 = new JLabel("IC Number:");
 		icLabel_1.setForeground(Color.BLACK);
@@ -413,11 +435,11 @@ public class StudentVehicle extends JFrame {
 		phoneLabel_1.setBounds(248, 27, 88, 14);
 		panel_2.add(phoneLabel_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_2.setColumns(10);
-		textField_2.setBounds(340, 24, 109, 20);
-		panel_2.add(textField_2);
+		phoneField_1 = new JTextField();
+		phoneField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		phoneField_1.setColumns(10);
+		phoneField_1.setBounds(340, 24, 109, 20);
+		panel_2.add(phoneField_1);
 		
 		JLabel matricLabel_1 = new JLabel("Matric Number:");
 		matricLabel_1.setForeground(Color.BLACK);
@@ -425,11 +447,11 @@ public class StudentVehicle extends JFrame {
 		matricLabel_1.setBounds(0, 76, 88, 14);
 		panel_2.add(matricLabel_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_3.setColumns(10);
-		textField_3.setBounds(92, 73, 137, 20);
-		panel_2.add(textField_3);
+		matricField_1 = new JTextField();
+		matricField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		matricField_1.setColumns(10);
+		matricField_1.setBounds(92, 73, 137, 20);
+		panel_2.add(matricField_1);
 		
 		JLabel yearLabel_1 = new JLabel("Year of Study:");
 		yearLabel_1.setForeground(Color.BLACK);
@@ -438,6 +460,7 @@ public class StudentVehicle extends JFrame {
 		panel_2.add(yearLabel_1);
 		
 		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(1, 1, 4, 1));
 		spinner_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		spinner_1.setBounds(340, 73, 41, 20);
 		panel_2.add(spinner_1);
@@ -448,11 +471,11 @@ public class StudentVehicle extends JFrame {
 		facultyLabel_1.setBounds(0, 101, 88, 14);
 		panel_2.add(facultyLabel_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_4.setColumns(10);
-		textField_4.setBounds(92, 98, 137, 20);
-		panel_2.add(textField_4);
+		facultyField_1 = new JTextField();
+		facultyField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		facultyField_1.setColumns(10);
+		facultyField_1.setBounds(92, 98, 137, 20);
+		panel_2.add(facultyField_1);
 		
 		JLabel addressLabel_1 = new JLabel("Address:");
 		addressLabel_1.setForeground(Color.BLACK);
@@ -460,11 +483,11 @@ public class StudentVehicle extends JFrame {
 		addressLabel_1.setBounds(0, 128, 88, 14);
 		panel_2.add(addressLabel_1);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_5.setColumns(10);
-		textField_5.setBounds(92, 125, 357, 20);
-		panel_2.add(textField_5);
+		addressField_1 = new JTextField();
+		addressField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		addressField_1.setColumns(10);
+		addressField_1.setBounds(92, 125, 357, 20);
+		panel_2.add(addressField_1);
 		
 		JLabel nameLabel_1 = new JLabel("Name:");
 		nameLabel_1.setForeground(Color.BLACK);
@@ -507,34 +530,36 @@ public class StudentVehicle extends JFrame {
 		modelLabel_1.setBounds(0, 4, 85, 14);
 		vPanel_1.add(modelLabel_1);
 		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_6.setColumns(10);
-		textField_6.setBounds(100, 1, 129, 20);
-		vPanel_1.add(textField_6);
+		modelField_1 = new JTextField();
+		modelField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		modelField_1.setColumns(10);
+		modelField_1.setBounds(100, 1, 129, 20);
+		vPanel_1.add(modelField_1);
 		
-		textField_7 = new JTextField();
-		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_7.setColumns(10);
-		textField_7.setBounds(100, 29, 129, 20);
-		vPanel_1.add(textField_7);
+		plateField_1 = new JTextField();
+		plateField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		plateField_1.setColumns(10);
+		plateField_1.setBounds(100, 29, 129, 20);
+		vPanel_1.add(plateField_1);
 		
 		JLabel plateLabel_1 = new JLabel("Plate Number:");
 		plateLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		plateLabel_1.setBounds(0, 32, 85, 14);
 		vPanel_1.add(plateLabel_1);
 		
-		textField_8 = new JTextField();
-		textField_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_8.setColumns(10);
-		textField_8.setBounds(100, 57, 129, 20);
-		vPanel_1.add(textField_8);
+		colorField_1 = new JTextField();
+		colorField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		colorField_1.setColumns(10);
+		colorField_1.setBounds(100, 57, 129, 20);
+		vPanel_1.add(colorField_1);
 		
 		JLabel colorLabel_1 = new JLabel("Color:");
 		colorLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		colorLabel_1.setBounds(0, 60, 85, 14);
 		vPanel_1.add(colorLabel_1);
 		
+		//Button Back will bring user back to Main Page
+		//setSelectedIndex(0)
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -547,6 +572,8 @@ public class StudentVehicle extends JFrame {
 		backButton.setBounds(20, 348, 204, 34);
 		RegistrationPage_1.add(backButton);
 		
+		//Will delete user information from database
+		//Have confirmation message
 		JButton deleteButton = new JButton("Delete");
 		deleteButton.setForeground(new Color(204, 0, 0));
 		deleteButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -554,6 +581,7 @@ public class StudentVehicle extends JFrame {
 		deleteButton.setBounds(241, 348, 204, 34);
 		RegistrationPage_1.add(deleteButton);
 		
+		//Will Update user information to database
 		JButton saveButton = new JButton("Save");
 		saveButton.setForeground(new Color(51, 204, 0));
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
