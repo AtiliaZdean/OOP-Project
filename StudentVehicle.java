@@ -24,24 +24,26 @@ import javax.swing.SwingConstants;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 
 public class StudentVehicle extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField nameField;
+	private JTextField icField;
+	private JTextField phoneField;
+	private JTextField matricField;
+	private JTextField modelField;
+	private JTextField plateField;
+	private JTextField colorField;
+	private JTextField facultyField;
 	//private JTextField textField_8;
-	private JTextField textField_9;
+	private JTextField addressField;
 	private Student student;
 	private Vehicle vehicle;
 	private DatabaseQuery registration;
+	private JTextField insertField;
 
 	/**
 	 * Launch the application.
@@ -65,99 +67,11 @@ public class StudentVehicle extends JFrame {
 	public StudentVehicle() {
 		setTitle("Student Vehicle Registration");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 522, 514);
+		setBounds(100, 100, 501, 514);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("UTeM Student Vehicle Registration System");
-		lblNewLabel.setBounds(85, 12, 337, 21);
-		contentPane.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		
-		JLabel lblNewLabel_1 = new JLabel("Student Credentials");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-		lblNewLabel_1.setBounds(10, 44, 135, 14);
-		contentPane.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Name:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2.setForeground(new Color(0, 0, 0));
-		lblNewLabel_2.setBounds(20, 72, 34, 14);
-		contentPane.add(lblNewLabel_2);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(20, 69, 478, 156);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField.setBounds(92, 0, 385, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(92, 25, 137, 20);
-		panel.add(textField_1);
-		
-		JLabel lblNewLabel_2_1 = new JLabel("IC Number:");
-		lblNewLabel_2_1.setForeground(Color.BLACK);
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2_1.setBounds(0, 27, 67, 14);
-		panel.add(lblNewLabel_2_1);
-		
-		JLabel lblNewLabel_2_1_1 = new JLabel("Phone Number:");
-		lblNewLabel_2_1_1.setForeground(Color.BLACK);
-		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2_1_1.setBounds(248, 27, 88, 14);
-		panel.add(lblNewLabel_2_1_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_2.setColumns(10);
-		textField_2.setBounds(340, 24, 137, 20);
-		panel.add(textField_2);
-		
-		JLabel lblNewLabel_2_1_1_1 = new JLabel("Matric Number:");
-		lblNewLabel_2_1_1_1.setForeground(Color.BLACK);
-		lblNewLabel_2_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2_1_1_1.setBounds(0, 76, 88, 14);
-		panel.add(lblNewLabel_2_1_1_1);
-
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_3.setColumns(10);
-		textField_3.setBounds(92, 73, 137, 20);
-		panel.add(textField_3);
-		
-		JLabel lblNewLabel_2_1_1_2 = new JLabel("Year of Study:");
-		lblNewLabel_2_1_1_2.setForeground(Color.BLACK);
-		lblNewLabel_2_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2_1_1_2.setBounds(248, 75, 88, 14);
-		panel.add(lblNewLabel_2_1_1_2);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		spinner.setBounds(340, 73, 41, 20);
-		panel.add(spinner);
-		spinner.setModel(new SpinnerNumberModel(1, 1, 4, 1));
-		
-		JLabel lblNewLabel_2_1_1_1_1 = new JLabel("Faculty:");
-		lblNewLabel_2_1_1_1_1.setForeground(Color.BLACK);
-		lblNewLabel_2_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2_1_1_1_1.setBounds(0, 101, 88, 14);
-		panel.add(lblNewLabel_2_1_1_1_1);
-		
-		textField_7 = new JTextField();
-		textField_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_7.setColumns(10);
-		textField_7.setBounds(92, 98, 137, 20);
-		panel.add(textField_7);
 		
 		/*JLabel lblNewLabel_2_1_1_1_2 = new JLabel("License Validity:");
 		lblNewLabel_2_1_1_1_2.setForeground(Color.BLACK);
@@ -171,146 +85,354 @@ public class StudentVehicle extends JFrame {
 		textField_8.setBounds(92, 49, 137, 20);
 		panel.add(textField_8);*/
 
-		JLabel lblNewLabel_2_1_1_1_1_1 = new JLabel("Address:");
-		lblNewLabel_2_1_1_1_1_1.setForeground(Color.BLACK);
-		lblNewLabel_2_1_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_2_1_1_1_1_1.setBounds(0, 128, 88, 14);
-		panel.add(lblNewLabel_2_1_1_1_1_1);
-		
-		textField_9 = new JTextField();
-		textField_9.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_9.setColumns(10);
-		textField_9.setBounds(92, 125, 376, 20);
-		panel.add(textField_9);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(18, 296, 488, 26);
-		contentPane.add(separator);
-
-		JLabel lblNewLabel_1_1 = new JLabel("Vehicle Details");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-		lblNewLabel_1_1.setBounds(17, 308, 135, 14);
-		contentPane.add(lblNewLabel_1_1);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(25, 333, 213, 88);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_3 = new JLabel("Vehicle Type:");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(0, 1, 85, 14);
-		panel_1.add(lblNewLabel_3);
-
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Car");
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rdbtnNewRadioButton.setBounds(0, 18, 111, 23);
-		panel_1.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnMotorcycle = new JRadioButton("Motorcycle");
-		rdbtnMotorcycle.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rdbtnMotorcycle.setBounds(0, 42, 111, 23);
-		panel_1.add(rdbtnMotorcycle);
-
 		//to group the radio buttons so that user can only select one
 		ButtonGroup bg = new ButtonGroup();
-		bg.add(rdbtnNewRadioButton);
-		bg.add(rdbtnMotorcycle);
+		contentPane.setLayout(null);
 		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(228, 1, 1, 98);
-		panel_1.add(separator_2);
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(10, 11, 474, 466);
+		contentPane.add(tabbedPane);
 		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setLayout(null);
-		panel_1_1.setBounds(271, 333, 228, 88);
-		contentPane.add(panel_1_1);
+		JPanel MainPage = new JPanel();
+		tabbedPane.addTab("Main", null, MainPage, null);
+		MainPage.setLayout(null);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Model Name:");
-		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3_1.setBounds(0, 4, 85, 14);
-		panel_1_1.add(lblNewLabel_3_1);
+		JLabel tLabel = new JLabel("WELCOME TO");
+		tLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		tLabel.setBounds(163, 102, 141, 14);
+		MainPage.add(tLabel);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_4.setBounds(100, 1, 129, 20);
-		panel_1_1.add(textField_4);
-		textField_4.setColumns(10);
+		JLabel tLabel_1 = new JLabel("UTeM Student Vehicle Registration System");
+		tLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		tLabel_1.setBounds(50, 133, 367, 14);
+		MainPage.add(tLabel_1);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_5.setColumns(10);
-		textField_5.setBounds(100, 29, 129, 20);
-		panel_1_1.add(textField_5);
+		insertField = new JTextField();
+		insertField.setBounds(116, 185, 235, 20);
+		MainPage.add(insertField);
+		insertField.setColumns(10);
 		
-		JLabel lblNewLabel_3_1_1 = new JLabel("Plate Number:");
-		lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3_1_1.setBounds(0, 32, 85, 14);
-		panel_1_1.add(lblNewLabel_3_1_1);
-		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField_6.setColumns(10);
-		textField_6.setBounds(100, 57, 129, 20);
-		panel_1_1.add(textField_6);
-		
-		JLabel lblNewLabel_3_1_2 = new JLabel("Color:");
-		lblNewLabel_3_1_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel_3_1_2.setBounds(0, 60, 85, 14);
-		panel_1_1.add(lblNewLabel_3_1_2);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBounds(248, 333, 13, 88);
-		contentPane.add(separator_1);
-		
-		JButton btnNewButton = new JButton("Register");
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(154, 432, 204, 34);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed (ActionEvent e) {
-				registration = new DatabaseQuery();
-				
-				String name = textField.getText();
-				String icNo = textField_1.getText();
-				String phoneNo = textField_2.getText();
-				String matricNo = textField_3.getText();
-				int yearStudy = (Integer) spinner.getValue();
-				String faculty = textField_7.getText();
-				String address = textField_9.getText();
-				String vehicleType = null;
-				if (rdbtnNewRadioButton.isSelected()) {
-					vehicleType = "Car";
-				} else if (rdbtnMotorcycle.isSelected()) {
-					vehicleType = "Motorcycle";
-				}
-				String model = textField_4.getText();
-				String plateNo = textField_5.getText();
-				String color = textField_6.getText();
-				
-				if (!registration.existStudent(matricNo)) {
-					//invoke information into class
-					if (address == null || address.trim().isEmpty() ) {
-						student = new Student(icNo, name, matricNo, phoneNo, yearStudy, faculty);
-					} else {
-						student = new Student(icNo, name, matricNo, phoneNo, yearStudy, address, faculty);
-					}
-				
-					vehicle = new Vehicle(plateNo, model, color, vehicleType);
-				
-					//invoke into information into database
-					registration.addStudent(student);
-					registration.addVehicle(student, vehicle);
-					JOptionPane.showMessageDialog(null, "Student registered successfully!"); 
-					//use vehicle or car&motorcycle?
-				} else {
-					JOptionPane.showMessageDialog(null, "Student already registered"); 
+		JButton searchButton = new JButton("Search");
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String input = insertField.getText();
+				try {
+					if (input.isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please input student matric number.","Error", JOptionPane.ERROR_MESSAGE);
+					} 
+					else {
+						int response = JOptionPane.showConfirmDialog(null, "Student " + input + " not registered. Do you want to register?", "Register?", JOptionPane.YES_NO_OPTION);
+						if (response == JOptionPane.YES_OPTION) {
+							tabbedPane.setSelectedIndex(1);
+							matricField.setText(input);
+							}
+						}
+				}catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		contentPane.add(btnNewButton);
+		searchButton.setBounds(126, 216, 89, 23);
+		MainPage.add(searchButton);
+		
+		JButton listButton = new JButton("List");
+		listButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null,"Listing Registered Students","Message",JOptionPane.INFORMATION_MESSAGE);
+				tabbedPane.setSelectedIndex(2);
+			}
+		});
+		listButton.setBounds(252, 216, 89, 23);
+		MainPage.add(listButton);
+												
+		JPanel RegistrationPage = new JPanel();
+		tabbedPane.addTab("Register", null, RegistrationPage, null);
+		RegistrationPage.setLayout(null);
+												
+		JLabel registerLabel = new JLabel("UTeM Student Vehicle Registration System");
+		registerLabel.setBounds(48, 11, 337, 21);
+		RegistrationPage.add(registerLabel);
+		registerLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
+														
+		JLabel studentLabel = new JLabel("Student Credentials");
+		studentLabel.setBounds(10, 43, 135, 14);
+		RegistrationPage.add(studentLabel);
+		studentLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+														
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 68, 449, 156);
+		RegistrationPage.add(panel);
+		panel.setLayout(null);
+														
+		nameField = new JTextField();
+		nameField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		nameField.setBounds(92, 0, 357, 20);
+		panel.add(nameField);
+		nameField.setColumns(10);
+														
+		icField = new JTextField();
+		icField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		icField.setColumns(10);
+		icField.setBounds(92, 25, 137, 20);
+		panel.add(icField);
+														
+		JLabel icLabel = new JLabel("IC Number:");
+		icLabel.setForeground(Color.BLACK);
+		icLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		icLabel.setBounds(0, 27, 67, 14);
+		panel.add(icLabel);
+														
+		JLabel phoneLabel = new JLabel("Phone Number:");
+		phoneLabel.setForeground(Color.BLACK);
+		phoneLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		phoneLabel.setBounds(248, 27, 88, 14);
+		panel.add(phoneLabel);
+														
+		phoneField = new JTextField();
+		phoneField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		phoneField.setColumns(10);
+		phoneField.setBounds(340, 24, 109, 20);
+		panel.add(phoneField);
+														
+		JLabel matricLabel = new JLabel("Matric Number:");
+		matricLabel.setForeground(Color.BLACK);
+		matricLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		matricLabel.setBounds(0, 76, 88, 14);
+		panel.add(matricLabel);
+														
+		matricField = new JTextField();
+		matricField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		matricField.setColumns(10);
+		matricField.setBounds(92, 73, 137, 20);
+		panel.add(matricField);
+																
+		JLabel yearLabel = new JLabel("Year of Study:");
+		yearLabel.setForeground(Color.BLACK);
+		yearLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		yearLabel.setBounds(248, 75, 88, 14);
+		panel.add(yearLabel);
+																
+		JSpinner spinner = new JSpinner();
+		spinner.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		spinner.setBounds(340, 73, 41, 20);
+		panel.add(spinner);
+		spinner.setModel(new SpinnerNumberModel(1, 1, 4, 1));
+																
+		JLabel facultyLabel = new JLabel("Faculty:");
+		facultyLabel.setForeground(Color.BLACK);													
+		facultyLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));														
+		facultyLabel.setBounds(0, 101, 88, 14);																
+		panel.add(facultyLabel);																
+																
+		facultyField = new JTextField();
+		facultyField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		facultyField.setColumns(10);
+		facultyField.setBounds(92, 98, 137, 20);
+		panel.add(facultyField);
+																
+		JLabel addressLabel = new JLabel("Address:");
+		addressLabel.setForeground(Color.BLACK);
+		addressLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		addressLabel.setBounds(0, 128, 88, 14);
+		panel.add(addressLabel);
+																
+		addressField = new JTextField();
+		addressField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		addressField.setColumns(10);
+		addressField.setBounds(92, 125, 357, 20);
+		panel.add(addressField);
+		
+		JLabel nameLabel = new JLabel("Name:");
+		nameLabel.setBounds(0, 3, 34, 14);
+		panel.add(nameLabel);
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		nameLabel.setForeground(new Color(0, 0, 0));
+		
+		JLabel vehicleLabel = new JLabel("Vehicle Details");
+		vehicleLabel.setBounds(10, 235, 135, 14);
+		RegistrationPage.add(vehicleLabel);
+		vehicleLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+																				
+		JPanel vtypePanel = new JPanel();
+		vtypePanel.setBounds(10, 260, 213, 88);
+		RegistrationPage.add(vtypePanel);
+		vtypePanel.setLayout(null);
+		
+		JLabel vtypeLabel = new JLabel("Vehicle Type:");
+		vtypeLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		vtypeLabel.setBounds(0, 1, 85, 14);
+		vtypePanel.add(vtypeLabel);
+		
+		JRadioButton CarRadioButton = new JRadioButton("Car");
+		CarRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		CarRadioButton.setBounds(0, 18, 111, 23);
+		vtypePanel.add(CarRadioButton);
+		
+		JRadioButton MotorRadioButton = new JRadioButton("Motorcycle");
+		MotorRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		MotorRadioButton.setBounds(0, 42, 111, 23);
+		vtypePanel.add(MotorRadioButton);
+		bg.add(CarRadioButton);
+		bg.add(MotorRadioButton);
+																						
+		JPanel vPanel = new JPanel();
+		vPanel.setBounds(231, 260, 228, 88);
+		RegistrationPage.add(vPanel);
+		vPanel.setLayout(null);
+		
+		JLabel modelLabel = new JLabel("Model Name:");
+		modelLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		modelLabel.setBounds(0, 4, 85, 14);
+		vPanel.add(modelLabel);
+																						
+		modelField = new JTextField();
+		modelField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		modelField.setBounds(100, 1, 129, 20);
+		vPanel.add(modelField);
+		modelField.setColumns(10);
+																						
+		plateField = new JTextField();
+		plateField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		plateField.setColumns(10);
+		plateField.setBounds(100, 29, 129, 20);
+		vPanel.add(plateField);
+																						
+		JLabel plateLabel = new JLabel("Plate Number:");
+		plateLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		plateLabel.setBounds(0, 32, 85, 14);
+		vPanel.add(plateLabel);
+																						
+		colorField = new JTextField();
+		colorField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		colorField.setColumns(10);
+		colorField.setBounds(100, 57, 129, 20);
+		vPanel.add(colorField);
+																						
+		JLabel colorLabel = new JLabel("Color:");
+		colorLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		colorLabel.setBounds(0, 60, 85, 14);
+		vPanel.add(colorLabel);
+																						
+		JButton registerButton = new JButton("Register");
+		registerButton.setBounds(22, 380, 204, 34);
+		RegistrationPage.add(registerButton);
+		registerButton.setBackground(new Color(255, 255, 255));
+		registerButton.setForeground(new Color(0, 0, 0));
+		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//empty the fields
+				nameField.setText("");
+				icField.setText("");
+				phoneField.setText("");
+				matricField.setText("");
+				facultyField.setText("");
+				addressField.setText("");
+				modelField.setText("");
+				plateField.setText("");
+				colorField.setText("");
+				
+				JOptionPane.showMessageDialog(null,"Registration Cancelled","Message",JOptionPane.INFORMATION_MESSAGE);
+				tabbedPane.setSelectedIndex(0); //Go back to main page
+				insertField.setText("");
+			}
+		});
+		cancelButton.setForeground(Color.BLACK);
+		cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		cancelButton.setBackground(Color.WHITE);
+		cancelButton.setBounds(243, 380, 204, 34);
+		RegistrationPage.add(cancelButton);
+																						
+		JPanel ListPage = new JPanel();
+		tabbedPane.addTab("List", null, ListPage, null);
+		ListPage.setLayout(null);
+		
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				registration = new DatabaseQuery();
+				
+				String name = nameField.getText();			
+				String icNo = icField.getText();
+				String phoneNo = phoneField.getText();
+				String matricNo = matricField.getText();
+				int yearStudy = (Integer) spinner.getValue();
+				String faculty = facultyField.getText();
+				String address = addressField.getText();
+				String vehicleType = null;
+				
+				
+				if (CarRadioButton.isSelected()) {
+					vehicleType = "Car";
+					} else if (MotorRadioButton.isSelected()) {
+						vehicleType = "Motorcycle";
+						}
+				String model = modelField.getText();
+				String plateNo = plateField.getText();
+				String color = colorField.getText();
+				
+				//exception
+				try {
+					if (name.isEmpty()) {
+						throw new Exception("Name cannot be empty.");
+					}
+					if (icNo.isEmpty()) {
+						throw new Exception("IC number cannot be empty");
+					}
+					if (phoneNo.isEmpty()) {
+						throw new Exception("Phone Number cannot be empty.");
+					}
+					if (matricNo.isEmpty()) {
+						throw new Exception("Matric number cannot be empty");
+					}
+					if (faculty.isEmpty()) {
+						throw new Exception("Faculty cannot be empty.");
+					}
+					if (address.isEmpty()) {
+						throw new Exception("Address number cannot be empty.");
+					}
+					if (vehicleType == null) {
+						throw new Exception("Please select a vehicle.");
+					}
+					if (model.isEmpty()) {
+						throw new Exception("Vehicle model cannot be empty.");
+					}
+					if (plateNo.isEmpty()) {
+						throw new Exception("Plate number cannot be empty.");
+					}
+					if (color.isEmpty()) {
+						throw new Exception("Vehicle color cannot be empty.");
+					}
+					
+					
+					if (!registration.existStudent(matricNo)) {
+						//invoke information into class
+						if (address == null || address.trim().isEmpty() ) {
+							student = new Student(icNo, name, matricNo, phoneNo, yearStudy, faculty);
+							} else {
+								student = new Student(icNo, name, matricNo, phoneNo, yearStudy, address, faculty);
+								}
+						
+						vehicle = new Vehicle(plateNo, model, color, vehicleType);
+															
+						//invoke into information into database
+						registration.addStudent(student);
+						registration.addVehicle(student, vehicle);
+						JOptionPane.showMessageDialog(null, "Student registered successfully!"); 
+						//use vehicle or car&motorcycle?
+						} else {
+							JOptionPane.showMessageDialog(null, "Student already registered"); 
+							}
+				} catch(NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null,  "Year invalid", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
+				}
+			});
 	}
 }
-
