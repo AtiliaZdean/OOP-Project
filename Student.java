@@ -5,6 +5,8 @@ public class Student {
 	private String icNo, name, phoneNo, address, faculty;
 	public String matricNo;
 	private int yearStudy;
+
+	public Student () {}
 	
 	//constructor
 	public Student (String icNo, String name, String matricNo, String phoneNo, int yearStudy, String address, String faculty) {
