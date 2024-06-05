@@ -11,6 +11,8 @@ public class DatabaseQuery {
 	private final String URL = "jdbc:mysql://localhost:3306/studentvehicle_registration";
 	private final String USER = "root";
 	private final String PASSWORD = "";
+
+	public DatabaseQuery() {}
 	
 	//add Student
 	public void addStudent (Student student){
