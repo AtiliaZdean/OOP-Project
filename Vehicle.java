@@ -10,6 +10,8 @@ public class Vehicle {
 	//private Student owner;
 	private String plateNo, model, color, vehicleType;
 	
+	public Vehicle () {}
+	
 	public Vehicle (String plateNo, String model, String color, String vehicleType) {
 		this.plateNo = plateNo;
 		this.model = model;
