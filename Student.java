@@ -6,6 +6,8 @@ public class Student {
 	public String matricNo;
 	private int yearStudy;
 	
+	public Student () {}
+	
 	//constructor
 	public Student (String icNo, String name, String matricNo, String phoneNo, int yearStudy, String address, String faculty) {
 		this.icNo = icNo;
@@ -24,7 +26,7 @@ public class Student {
 		this.matricNo = matricNo;
 		this.phoneNo = phoneNo;
 		this.yearStudy = yearStudy;
-		this.address = "not filled in";
+		this.address = "Not filled in";
 		this.faculty = faculty;
 	}
 	
