@@ -5,12 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 //database connection implementation
 public class DatabaseQuery {
 	private final String URL = "jdbc:mysql://localhost:3306/studentvehicle_registration";
 	private final String USER = "root";
 	private final String PASSWORD = "";
+	
+	public DatabaseQuery() {}
 	
 	//add Student
 	public void addStudent (Student student){
@@ -152,6 +155,7 @@ public class DatabaseQuery {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+		
 	}
 	
 	//retrieve data from vehicle table
@@ -175,4 +179,29 @@ public class DatabaseQuery {
 			ex.printStackTrace();
 		}
 	}
+	
+	//in vector Students, theres vector student to hold multiple datas for multiple Vehicles
+		public Vector<Vector<Object>> retrieveVehicleList() {
+	        Vector<Vector<Object>> vehicles = new Vector<>();
+	        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+	            String query = "SELECT * FROM vehicle";
+	            try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+	                try (ResultSet rs = pstmt.executeQuery()) {
+	                    while (rs.next()) {
+	                        Vector<Object> vehicle = new Vector<>();
+	                        vehicle.add(rs.getString("matricNo"));
+	                        vehicle.add(rs.getString("plateNo"));
+	                        vehicle.add(rs.getString("model"));
+	                        vehicle.add(rs.getString("vehicle_Type"));                        
+	                        vehicles.add(vehicle);
+	                    }
+	                }
+	            } catch (SQLException ex) {
+	                ex.printStackTrace();
+	            }
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	        return vehicles;
+	    }
 }
