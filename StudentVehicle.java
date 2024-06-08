@@ -8,7 +8,6 @@ import java.awt.event.*;
 import javax.swing.table.*;
 import java.util.Vector;
 
-
 public class StudentVehicle extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -24,11 +23,7 @@ public class StudentVehicle extends JFrame {
 	private JTextField plateField;
 	private JTextField colorField;
 	private JTextField facultyField;
-	//private JTextField textField_8;
 	private JTextField addressField;
-	private Student student;
-	private Vehicle vehicle;
-	private DatabaseQuery registration;
 	private JTextField insertField;
 	private DefaultTableModel tableModel;
 	private JTable table;
@@ -44,10 +39,15 @@ public class StudentVehicle extends JFrame {
 	private JTextField modelField_1;
 	private JTextField plateField_1;
 	private JTextField colorField_1;
+	
+	//class declaration
+	private Student student = new Student();
+	private Vehicle vehicle = new Vehicle();
+	private Car car = new Car();
+	private Motorcycle motor = new Motorcycle();
+	private DatabaseQuery query = new DatabaseQuery();
 
-	/**
-	 * Launch the application.
-	 */
+	//Launch the application.
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -61,20 +61,15 @@ public class StudentVehicle extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	//Create the frame.
 	public StudentVehicle() {
 		setTitle("Student Vehicle Registration");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 501, 514);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
-		
-		//to group the radio buttons so that user can only select one
-		ButtonGroup bg = new ButtonGroup();
 		contentPane.setLayout(null);
 		
 		//Tab pane declaration
@@ -199,7 +194,7 @@ public class StudentVehicle extends JFrame {
 		panel.add(addressField);
 				
 		JLabel nameLabel = new JLabel("Name:");
-		nameLabel.setBounds(0, 3, 34, 14);
+		nameLabel.setBounds(0, 3, 51, 14);
 		panel.add(nameLabel);
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		nameLabel.setForeground(new Color(0, 0, 0));
@@ -228,6 +223,8 @@ public class StudentVehicle extends JFrame {
 		MotorRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		MotorRadioButton.setBounds(0, 42, 111, 23);
 		vtypePanel.add(MotorRadioButton);
+		//to group the radio buttons so that user can only select one
+		ButtonGroup bg = new ButtonGroup();
 		bg.add(CarRadioButton);
 		bg.add(MotorRadioButton);
 																								
@@ -389,7 +386,7 @@ public class StudentVehicle extends JFrame {
 		JLabel nameLabel_1 = new JLabel("Name:");
 		nameLabel_1.setForeground(Color.BLACK);
 		nameLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		nameLabel_1.setBounds(0, 3, 34, 14);
+		nameLabel_1.setBounds(0, 3, 51, 14);
 		panel_2.add(nameLabel_1);
 				
 		JLabel vehicleLabel_1 = new JLabel("Vehicle Details");
@@ -464,14 +461,18 @@ public class StudentVehicle extends JFrame {
 		MainPage.add(insertField);
 		insertField.setColumns(10);
 		
-		
-		
+		JButton backButton_1 = new JButton("Back");
+        backButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(0); //Go back to main page
+			}
+		});
+				
 		//List button bring to list page. Will list out registered users
 		//Will list: matricNo, VehicleType, model and plateNo
 		JButton listButton = new JButton("List");
 		listButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				registration = new DatabaseQuery();
 				JOptionPane.showMessageDialog(null,"Listing Registered Students","Message",JOptionPane.INFORMATION_MESSAGE);
 				
 				tabbedPane.setSelectedIndex(2);
@@ -480,6 +481,7 @@ public class StudentVehicle extends JFrame {
 				JPanel tablePanel = new JPanel();
 				tablePanel.setLayout(new BorderLayout());
 			
+				//design the table display
 		        tableModel = new DefaultTableModel();
 		        tableModel.addColumn("Matric No");
 		        tableModel.addColumn("Plate No");
@@ -489,17 +491,12 @@ public class StudentVehicle extends JFrame {
 		        JScrollPane scrollPane = new JScrollPane(table);
 		        tablePanel.add(scrollPane, BorderLayout.CENTER);
 		        
-		        JButton backButton_1 = new JButton("Back");
-		        backButton_1.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						tabbedPane.setSelectedIndex(0); //Go back to main page
-					}
-				});
+		        //adding back button
 		        JPanel buttonPanel = new JPanel();
 		        buttonPanel.add(backButton_1);
 		        tablePanel.add(buttonPanel, BorderLayout.SOUTH);
 		        
-		        //below this adalah untuk tujuan refresh table, nak buat cara mdm, this is more complex so xleh
+		        //below this adalah untuk tujuan refresh table
 		        // Clear existing components in ListPage
 		        ListPage.removeAll();
 		        
@@ -512,7 +509,7 @@ public class StudentVehicle extends JFrame {
 		        ListPage.repaint();
 		        
 		        // Retrieve student data to fill in the table
-		        Vector<Vector<Object>> vehicleData = registration.retrieveVehicleList();
+		        Vector<Vector<Object>> vehicleData = query.retrieveVehicleList();
 		        for (Vector<Object> vehicle : vehicleData) {
 		            tableModel.addRow(vehicle);
 		        }
@@ -520,7 +517,6 @@ public class StudentVehicle extends JFrame {
 		});
 		listButton.setBounds(252, 216, 89, 23);
 		MainPage.add(listButton);
-		
 		
 		//Cancel button will reset all input and return to main page
 		//Go back setSelectedIndex(0)
@@ -548,7 +544,6 @@ public class StudentVehicle extends JFrame {
 		cancelButton.setBackground(Color.WHITE);
 		cancelButton.setBounds(243, 380, 204, 34);
 		RegistrationPage.add(cancelButton);
-					
 		
 		//Button Back will bring user back to Main Page
 		//setSelectedIndex(0)
@@ -574,15 +569,16 @@ public class StudentVehicle extends JFrame {
 				int responses = JOptionPane.showConfirmDialog(null, "Do you want to delete student " + student.matricNo + "?", "Delete?", JOptionPane.YES_NO_OPTION);
 				if (responses == JOptionPane.YES_OPTION) {
 					//delete vehicle then student
-					registration = new DatabaseQuery();
-					registration.deleteVehicle(student);
-					registration.deleteStudent(student);
+					query = new DatabaseQuery();
+					query.deleteVehicle(student);
+					query.deleteStudent(student);
 					//Message student been deleted
 					JOptionPane.showMessageDialog(null, "Student data has been deleted", "Deleted", JOptionPane.INFORMATION_MESSAGE);
 				}
+				
+				//Go back main page
 				tabbedPane.setSelectedIndex(0);
 				insertField.setText("");
-				//Go back main page
 			}
 		});
 		deleteButton.setForeground(new Color(204, 0, 0));
@@ -596,7 +592,6 @@ public class StudentVehicle extends JFrame {
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//allow update
-				
 				String name = nameField_1.getText();			
 				String icNo = icField_1.getText();
 				String matricNo = student.matricNo;
@@ -604,14 +599,12 @@ public class StudentVehicle extends JFrame {
 				int yearStudy = (Integer) spinner_1.getValue();
 				String faculty = facultyField_1.getText();
 				String address = addressField_1.getText();
-				String vehicleType = vehicle.getVehicleType();
-				
-				
-				if (CarRadioButton.isSelected()) {
-					vehicleType = "Car";
-					} else if (MotorRadioButton.isSelected()) {
-						vehicleType = "Motorcycle";
-						}
+				String vehicleType = null;	
+				if (CarRadioButton_1.isSelected()) {
+					vehicleType = car.isType();
+				} else if (MotorRadioButton_1.isSelected()) {
+					vehicleType = motor.isType();
+				}
 				String model = modelField_1.getText();
 				String plateNo = plateField_1.getText();
 				String color = colorField_1.getText();
@@ -630,9 +623,6 @@ public class StudentVehicle extends JFrame {
 					if (faculty.isEmpty()) {
 						throw new Exception("Faculty cannot be empty.");
 					}
-					//if (address.isEmpty()) {
-						//throw new Exception("Address number cannot be empty.");
-					//}
 					if (vehicleType == null) {
 						throw new Exception("Please select a vehicle.");
 					}
@@ -646,26 +636,22 @@ public class StudentVehicle extends JFrame {
 						throw new Exception("Vehicle color cannot be empty.");
 					}
 					
-					
 					//invoke information into class
 					if (address == null || address.trim().isEmpty() ) {
 						student = new Student(icNo, name, matricNo, phoneNo, yearStudy, faculty);
-						} else {
-							student = new Student(icNo, name, matricNo, phoneNo, yearStudy, address, faculty);
-							}
-					
+					} else {
+						student = new Student(icNo, name, matricNo, phoneNo, yearStudy, address, faculty);
+					}	
 					vehicle = new Vehicle(plateNo, model, color, vehicleType);	
 					
 					//invoke into information into database
-					registration.updateStudent(student);
-					registration.updateVehicle(student, vehicle);
-					//use vehicle or car&motorcycle?
+					query.updateStudent(student);
+					query.updateVehicle(student, vehicle);
+					
 					JOptionPane.showMessageDialog(null, "Student updated successfully!");	
 				}catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				
-
 			}
 		});
 		saveButton.setForeground(new Color(51, 204, 0));
@@ -676,8 +662,6 @@ public class StudentVehicle extends JFrame {
 		
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed (ActionEvent e) {
-				registration = new DatabaseQuery();
-				
 				String name = nameField.getText();			
 				String icNo = icField.getText();
 				String phoneNo = phoneField.getText();
@@ -686,13 +670,14 @@ public class StudentVehicle extends JFrame {
 				String faculty = facultyField.getText();
 				String address = addressField.getText();
 				String vehicleType = null;
-				
-				
+				String type = "";
 				if (CarRadioButton.isSelected()) {
-					vehicleType = "Car";
-					} else if (MotorRadioButton.isSelected()) {
-						vehicleType = "Motorcycle";
-						}
+					vehicleType = car.isType();
+					type = car.isType();
+				} else if (MotorRadioButton.isSelected()) {
+					vehicleType = motor.isType();
+					type = motor.isType();
+				}
 				String model = modelField.getText();
 				String plateNo = plateField.getText();
 				String color = colorField.getText();
@@ -714,9 +699,6 @@ public class StudentVehicle extends JFrame {
 					if (faculty.isEmpty()) {
 						throw new Exception("Faculty cannot be empty.");
 					}
-					//if (address.isEmpty()) {
-						//throw new Exception("Address number cannot be empty.");
-					//}
 					if (vehicleType == null) {
 						throw new Exception("Please select a vehicle.");
 					}
@@ -730,56 +712,50 @@ public class StudentVehicle extends JFrame {
 						throw new Exception("Vehicle color cannot be empty.");
 					}
 					
-					
-					if (!registration.existStudent(matricNo)) {
+					if (!query.existStudent(matricNo)) {
 						//invoke information into class
 						if (address == null || address.trim().isEmpty() ) {
 							student = new Student(icNo, name, matricNo, phoneNo, yearStudy, faculty);
-							} else {
-								student = new Student(icNo, name, matricNo, phoneNo, yearStudy, address, faculty);
-								}
+						} else {
+							student = new Student(icNo, name, matricNo, phoneNo, yearStudy, address, faculty);
+						}
 						
 						vehicle = new Vehicle(plateNo, model, color, vehicleType);
 															
 						//invoke into information into database
-						registration.addStudent(student);
-						registration.addVehicle(student, vehicle);
-						JOptionPane.showMessageDialog(null, "Student registered successfully!"); 
-						//use vehicle or car&motorcycle?
-						} else {
-							JOptionPane.showMessageDialog(null, "Student already registered"); 
-							}
+						query.addStudent(student);
+						query.addVehicle(student, vehicle);
+						
+						JOptionPane.showMessageDialog(null, "Student registered " + type + " successfully!"); 
+					} else {
+						JOptionPane.showMessageDialog(null, "Student already registered"); 
+					}
+					
 					tabbedPane.setSelectedIndex(0);
 					insertField.setText("");
 				} catch(NumberFormatException ex) {
 					JOptionPane.showMessageDialog(null,  "Year invalid", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				}
-				
-				
-				}
-			});
+				}		
+			}
+		});
+		
 		//search based on input, if not register will prompt choice
 		//if user registered, bring to Detials tab setSelectedIndex(3)
 		JButton searchButton = new JButton("Search");
-				
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				student = new Student();
-				vehicle = new Vehicle();
-				registration = new DatabaseQuery();
 				String input = insertField.getText();
 				try {
 					if (input.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Please input student matric number.","Error", JOptionPane.ERROR_MESSAGE);
 					} 
 					//Check input(matric no) if in database, if exist go to tab pane(3) display registered details
-					else if (registration.existStudent(input)) {
+					else if (query.existStudent(input)) {
 						student.matricNo = input;
-						registration.retrieveStudent(student);
-						registration.retrieveVehicle(student, vehicle);
+						query.retrieveStudent(student);
+						query.retrieveVehicle(student, vehicle);
 								
 						nameField_1.setText(student.getName());
 						icField_1.setText(student.getIcNo());
@@ -791,23 +767,21 @@ public class StudentVehicle extends JFrame {
 						modelField_1.setText(vehicle.getModel());
 						plateField_1.setText(vehicle.getPlateNo());
 						colorField_1.setText(vehicle.getColor());
-								
 						if ("Car".equals(vehicle.getVehicleType())) {
 							CarRadioButton_1.setSelected(true);
 						} else if ("Motorcycle".equals(vehicle.getVehicleType())) {
 							MotorRadioButton_1.setSelected(true);
 						}
+						
 						//open display page
-						tabbedPane.setSelectedIndex(3);
-									
-					}
-					else {
+						tabbedPane.setSelectedIndex(3);			
+					} else {
 						int response = JOptionPane.showConfirmDialog(null, "Student " + input + " not registered. Do you want to register?", "Register?", JOptionPane.YES_NO_OPTION);
 						if (response == JOptionPane.YES_OPTION) {
 							tabbedPane.setSelectedIndex(1); //bring to register page
 							matricField.setText(input); //set the matricNo to the input
-							}
 						}
+					}
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
