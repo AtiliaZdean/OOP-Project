@@ -1,6 +1,6 @@
 package studentVehicle;
 
-//interface
+//interface Type
 interface Type {
 	String isType();
 }
@@ -54,6 +54,8 @@ public class Vehicle {
 
 //subclass car from vehicle
 class Car extends Vehicle implements Type {
+	public Car () {}
+	
 	public Car (String plateNo, String model, String color, String vehicleType) {
 		//inherit attributes from superclass vehicle
 		super(plateNo, model, color, vehicleType);
@@ -67,6 +69,8 @@ class Car extends Vehicle implements Type {
 
 //subclass motorcycle from vehicle
 class Motorcycle extends Vehicle implements Type {
+	public Motorcycle () {}
+	
 	public Motorcycle (String plateNo, String model, String color, String vehicleType) {
 		//inherit attributes from superclass vehicle
 		super (plateNo, model, color, vehicleType);
