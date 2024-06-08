@@ -1,8 +1,8 @@
 package studentVehicle;
 
 //interface
-interface Tyre {
-	void isTyre();
+interface Type {
+	String isType();
 }
 
 //superclass vehicle
@@ -53,27 +53,27 @@ public class Vehicle {
 }
 
 //subclass car from vehicle
-class Car extends Vehicle implements Tyre {
+class Car extends Vehicle implements Type {
 	public Car (String plateNo, String model, String color, String vehicleType) {
 		//inherit attributes from superclass vehicle
 		super(plateNo, model, color, vehicleType);
 	}
 	
 	@Override //interface method implementation
-	public void isTyre () {
-		System.out.println("This student is using 4 tyre vehicle.");
+	public String isTyre () {
+		return "Car";
 	}
 }
 
 //subclass motorcycle from vehicle
-class Motorcycle extends Vehicle implements Tyre {
+class Motorcycle extends Vehicle implements Type {
 	public Motorcycle (String plateNo, String model, String color, String vehicleType) {
 		//inherit attributes from superclass vehicle
 		super (plateNo, model, color, vehicleType);
 	}
 	
 	@Override //interface method implementation
-	public void isTyre () {
-		System.out.println("This student is using 4 tyre vehicle.");
+	public String isType () {
+		return "Motorcycle";
 	}
 }
