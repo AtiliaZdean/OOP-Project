@@ -13,8 +13,8 @@ public class StudentVehicle extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
-	//Register page fields line 36-49
-	//setSelectedIndex(1)
+	/*Register page fields line 18-27
+	setSelectedIndex(1)*/
 	private JTextField nameField;
 	private JTextField icField;
 	private JTextField phoneField;
@@ -25,11 +25,13 @@ public class StudentVehicle extends JFrame {
 	private JTextField facultyField;
 	private JTextField addressField;
 	private JTextField insertField;
+	
+	//Table for List Page line 30-31
 	private DefaultTableModel tableModel;
 	private JTable table;
 	
-	//Display page fields line 53-61
-	//setSelectedIndex(3)
+	/*Display page fields line 35-43
+	setSelectedIndex(3)*/
 	private JTextField nameField_1;
 	private JTextField icField_1;
 	private JTextField phoneField_1;
@@ -99,12 +101,14 @@ public class StudentVehicle extends JFrame {
 		tabbedPane.addTab("Register", null, RegistrationPage, null);
 		RegistrationPage.setLayout(null);
 				
-		//Register Page fields & labels line 185-347										
+		//Register Page fields & labels line 105-280
+		//Title Register
 		JLabel registerLabel = new JLabel("UTeM Student Vehicle Registration System");
 		registerLabel.setBounds(48, 11, 337, 21);
 		RegistrationPage.add(registerLabel);
 		registerLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
-																
+		
+		//Student Register
 		JLabel studentLabel = new JLabel("Student Credentials");
 		studentLabel.setBounds(10, 43, 135, 14);
 		RegistrationPage.add(studentLabel);
@@ -114,13 +118,14 @@ public class StudentVehicle extends JFrame {
 		panel.setBounds(10, 68, 449, 156);
 		RegistrationPage.add(panel);
 		panel.setLayout(null);
-																
+		
+		//Student Details Section -- Update table student
 		nameField = new JTextField();
 		nameField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		nameField.setBounds(92, 0, 357, 20);
 		panel.add(nameField);
 		nameField.setColumns(10);
-																
+		
 		icField = new JTextField();
 		icField.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		icField.setColumns(10);
@@ -199,6 +204,7 @@ public class StudentVehicle extends JFrame {
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		nameLabel.setForeground(new Color(0, 0, 0));
 				
+		//Vehicle Details Section -- Update table vehicle
 		JLabel vehicleLabel = new JLabel("Vehicle Details");
 		vehicleLabel.setBounds(10, 235, 135, 14);
 		RegistrationPage.add(vehicleLabel);
@@ -281,9 +287,9 @@ public class StudentVehicle extends JFrame {
 		//Details Page Tab
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Details", null, panel_1, null);
-				panel_1.setLayout(null);
+		panel_1.setLayout(null);
 		
-		//Details Page fields & labels line 305
+		//Details Page fields & labels line 293-462
 		JPanel RegistrationPage_1 = new JPanel();
 		RegistrationPage_1.setLayout(null);
 		RegistrationPage_1.setBounds(0, 0, 469, 438);
