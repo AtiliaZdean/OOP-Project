@@ -74,7 +74,7 @@ public class StudentVehicle extends JFrame {
 		
 		//Tab pane declaration
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 11, 474, 466);
+		tabbedPane.setBounds(10, -29, 474, 506);
 		contentPane.add(tabbedPane);
 		
 		//Main page tab
