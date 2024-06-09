@@ -7,6 +7,7 @@ interface Type {
 
 //superclass vehicle
 public class Vehicle {
+	//private Student owner;
 	private String plateNo, model, color, vehicleType;
 
 	public Vehicle() {}
@@ -61,7 +62,7 @@ class Car extends Vehicle implements Type {
 	}
 	
 	@Override //interface method implementation
-	public String isTyre () {
+	public String isType () {
 		return "Car";
 	}
 }
