@@ -7,7 +7,6 @@ interface Type {
 
 //superclass vehicle
 public class Vehicle {
-	//private Student owner;
 	private String plateNo, model, color, vehicleType;
 
 	public Vehicle() {}
