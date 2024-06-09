@@ -577,7 +577,7 @@ public class StudentVehicle extends JFrame {
 				}
 				
 				//Go back main page
-				tabbedPane.setSelectedIndex(0);
+				tabbedPane.setSelectedIndex(3);
 				insertField.setText("");
 			}
 		});
@@ -615,13 +615,22 @@ public class StudentVehicle extends JFrame {
 						throw new Exception("Name cannot be empty.");
 					}
 					if (icNo.isEmpty()) {
-						throw new Exception("IC number cannot be empty");
+						throw new Exception("IC number cannot be empty.");
+					}
+					if (icNo.length()>14) {
+						throw new Exception("IC number exceeds 14 characters.");
 					}
 					if (phoneNo.isEmpty()) {
 						throw new Exception("Phone Number cannot be empty.");
 					}
+					if (phoneNo.length() >11) {
+						throw new Exception("Phone Number exceeds 11 characters.");
+					}
 					if (faculty.isEmpty()) {
 						throw new Exception("Faculty cannot be empty.");
+					}
+					if (faculty.length() > 10 ) {
+						throw new Exception("Faculty name exceeds 10 characters.");
 					}
 					if (vehicleType == null) {
 						throw new Exception("Please select a vehicle.");
@@ -631,6 +640,9 @@ public class StudentVehicle extends JFrame {
 					}
 					if (plateNo.isEmpty()) {
 						throw new Exception("Plate number cannot be empty.");
+					}
+					if (plateNo.length() > 12) {
+						throw new Exception("Plate number exceeds 12 characters.");
 					}
 					if (color.isEmpty()) {
 						throw new Exception("Vehicle color cannot be empty.");
@@ -690,14 +702,26 @@ public class StudentVehicle extends JFrame {
 					if (icNo.isEmpty()) {
 						throw new Exception("IC number cannot be empty");
 					}
+					if (icNo.length()>14) {
+						throw new Exception("IC number exceeds 14 characters.");
+					}
 					if (phoneNo.isEmpty()) {
 						throw new Exception("Phone Number cannot be empty.");
+					}
+					if (phoneNo.length() >11) {
+						throw new Exception("Phone Number exceeds 11 characters.");
 					}
 					if (matricNo.isEmpty()) {
 						throw new Exception("Matric number cannot be empty");
 					}
+					if (matricNo.length() > 10) {
+						throw new Exception("Matric number exceeds 10 characters.");
+					}
 					if (faculty.isEmpty()) {
 						throw new Exception("Faculty cannot be empty.");
+					}
+					if (faculty.length() > 10 ) {
+						throw new Exception("Faculty name exceeds 10 characters.");
 					}
 					if (vehicleType == null) {
 						throw new Exception("Please select a vehicle.");
@@ -707,6 +731,9 @@ public class StudentVehicle extends JFrame {
 					}
 					if (plateNo.isEmpty()) {
 						throw new Exception("Plate number cannot be empty.");
+					}
+					if (plateNo.length() > 12) {
+						throw new Exception("Plate number exceeds 12 characters.");
 					}
 					if (color.isEmpty()) {
 						throw new Exception("Vehicle color cannot be empty.");
@@ -751,6 +778,9 @@ public class StudentVehicle extends JFrame {
 					if (input.isEmpty()) {
 						JOptionPane.showMessageDialog(null, "Please input student matric number.","Error", JOptionPane.ERROR_MESSAGE);
 					} 
+					if (input.length() != 10) {
+						JOptionPane.showMessageDialog(null, "Please input valid matric number.","Error", JOptionPane.ERROR_MESSAGE);
+					}
 					//Check input(matric no) if in database, if exist go to tab pane(3) display registered details
 					else if (query.existStudent(input)) {
 						student.matricNo = input;
